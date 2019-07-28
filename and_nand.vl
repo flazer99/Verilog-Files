@@ -1,0 +1,25 @@
+module test_nand;
+reg a1;
+reg a2;
+reg a3;
+wire b;
+wire c;
+initial begin
+a1=0;a2=0;a3=0;
+#1 a3=1;
+#1 a2=1;
+   a3=0;
+#1 a3=1;
+#1 a1=1;
+   a2=0;
+   a3=0;
+#1 a3=1;
+#1 a2=1;
+   a3=0;
+#1 a3=1;
+end
+nand g1(b,a1,a2,a3);
+nand g2(c,b,b);
+initial $monitor($time,"a1=%b,a2=%b,a3=%b,c=%b",a1,a2,a3,c);
+initial #100 $finish;
+endmodule
